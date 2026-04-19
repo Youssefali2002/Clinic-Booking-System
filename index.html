@@ -7,33 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="booking-container">
+<div class="booking-container">
     <h2>حجز مواعيد العيادة</h2>
     
     <div class="selection-group">
-        <label>القائمة المفردة (المواعيد المتاحة):</label>
+        <label for="singleSelect">المواعيد المتاحة حالياً (Single):</label>
         <select id="singleSelect" class="custom-select">
-            <option value="10:00">10:00 صباحاً</option>
-            <option value="10:30">10:30 صباحاً</option>
-            <option value="11:00">11:00 صباحاً</option>
-            <option value="11:30">11:30 صباحاً</option>
-            <option value="12:00">12:00 ظهراً</option>
         </select>
     </div>
 
     <div class="selection-group">
-        <label>القائمة المتعددة (حدد كذا موعد):</label>
+        <label for="multiSelect">اختر مواعيد الحجز (Multi):</label>
         <select id="multiSelect" multiple class="custom-select multi">
             <option value="10:00">10:00 صباحاً</option>
-            <option value="10:30">10:30 صباحاً</option>
             <option value="11:00">11:00 صباحاً</option>
-            <option value="11:30">11:30 صباحاً</option>
             <option value="12:00">12:00 ظهراً</option>
+            <option value="01:00">01:00 ظهراً</option>
+            <option value="02:00">02:00 ظهراً</option>
         </select>
-        <small>اضغط Ctrl لاختيار أكثر من موعد</small>
+        <small>اضغط Ctrl + Click لتحديد أو إلغاء تحديد المواعيد</small>
     </div>
-
-    <button id="confirmBtn" class="main-btn">تأكيد الحجز</button>
 </div>
     <script src="main.js"></script>
 </body>
