@@ -11,6 +11,11 @@
     <h2>حجز مواعيد العيادة</h2>
     
     <div class="selection-group">
+        <label for="dateSelect">تاريخ الحجز:</label>
+        <input type="date" id="dateSelect" class="custom-date">
+    </div>
+    
+    <div class="selection-group">
         <label for="singleSelect">المواعيد المتاحة حالياً (Single):</label>
         <select id="singleSelect" class="custom-select">
         </select>
@@ -26,6 +31,11 @@
             <option value="02:00">02:00 ظهراً</option>
         </select>
         <small>اضغط Ctrl + Click لتحديد أو إلغاء تحديد المواعيد</small>
+    </div>
+    
+    <div class="action-buttons">
+        <button id="saveBtn" class="btn-primary">حفظ الحجز</button>
+        <button id="clearBtn" class="btn-secondary">مسح الحجز</button>
     </div>
 </div>
     <script src="main.js"></script>
