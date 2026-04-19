@@ -1,91 +1,354 @@
-/* تنسيقات عامة تشبه روح الـ Mac */
+/* 1. إعدادات عامة للخطوط والخلفية */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color: #f0f2f5;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    direction: rtl; /* اتجاه الكتابة عربي */
+    overflow: hidden;
+    position: relative;
 }
 
+/* إضافة تأثير تحريك الخلفية */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* إضافة تأثيرات إضافية للخلفية */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 119, 48, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 48, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-20px) rotate(1deg); }
+    66% { transform: translateY(10px) rotate(-1deg); }
+}
+
+/* 2. الحاوية الأساسية (الـ Card) */
 .booking-container {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px); /* تأثير الزجاج */
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    direction: rtl; /* عشان الحجز بالعربي */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 45px;
+    border-radius: 30px;
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 20px 60px rgba(0, 0, 0, 0.15);
+    width: 480px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+    animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) rotateX(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+.booking-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06c, #ffbe0b, #fb5607, #ff006e);
+    border-radius: 30px;
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(10px);
+    animation: borderGlow 4s linear infinite;
+    background-size: 400% 400%;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 h2 {
-    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
-    margin-bottom: 25px;
-    font-size: 1.5rem;
+    margin-bottom: 35px;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.1);
+    animation: titleGlow 3s ease-in-out infinite alternate;
 }
 
+@keyframes titleGlow {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.2); }
+}
+
+/* 3. تنسيق مجموعات الاختيار */
 .selection-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.selection-group:nth-child(2) { animation-delay: 0.1s; }
+.selection-group:nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #666;
-    font-size: 0.9rem;
+    margin-bottom: 12px;
+    color: #2d3748;
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-right: 25px;
 }
 
-/* تنسيق الـ Select بشكل عصري */
+label::before {
+    content: '>';
+    position: absolute;
+    right: 0;
+    color: #667eea;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 4. تنسيق الـ Select بشكل احترافي */
 .custom-select {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background-color: white;
+    padding: 15px 20px;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
     font-size: 1rem;
-    color: #444;
+    color: #2d3748;
     outline: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.custom-select:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.5);
+}
+
+/* حالة التركيز (Focus) */
+.custom-select:focus {
+    border-color: #667eea;
+    box-shadow: 
+        0 0 0 4px rgba(102, 126, 234, 0.15),
+        0 8px 25px rgba(102, 126, 234, 0.25);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* تنسيق خاص للـ Multi-select */
+.custom-select.multi {
+    height: 180px;
+    padding: 12px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(102, 126, 234, 0.4);
+    position: relative;
+}
+
+.custom-select.multi:hover {
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+/* تنسيق خاص للـ Options جوه الـ Multi */
+.custom-select.multi option {
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-select.multi option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    transition: right 0.5s ease;
+}
+
+.custom-select.multi option:hover::before {
+    right: 100%;
+}
+
+.custom-select.multi option:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateX(-5px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+}
+
+.custom-select.multi option:checked {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+    transform: translateX(-8px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    font-weight: 600;
+}
+
+.custom-select.multi option:checked::after {
+    content: '\2713'; /* Replaced with Unicode checkmark symbol */
+    position: absolute;
+    left: 16px;
+    font-size: 18px;
+    animation: checkmark 0.3s ease;
+}
+
+@keyframes checkmark {
+    from {
+        transform: scale(0) rotate(-45deg);
+    }
+    to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* 5. التلميحات الصغيره */
+small {
+    display: block;
+    margin-top: 12px;
+    color: #4a5568;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    padding: 8px 12px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    border-right: 3px solid #667eea;
+    font-weight: 500;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* تحسين شكل الـ Scrollbar للـ Multi-select */
+.custom-select.multi::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-select.multi::-webkit-scrollbar-track {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 10px;
+    margin: 8px 0;
+}
+
+.custom-select.multi::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
     transition: all 0.3s ease;
 }
 
-.custom-select:focus {
-    border-color: #007aff; /* لون أزرق آبل */
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+.custom-select.multi::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    background-clip: content-box;
 }
 
-.custom-select.multi {
-    height: 120px;
-    padding: 10px;
+/* ÅÖÇÝÉ ÊÃËíÑÇÊ ÅÖÇÝíÉ ááãÓÊÎÏã ÇáãÈÇÔÑ */
+.custom-select.multi:active {
+    transform: scale(0.98);
 }
 
-small {
-    color: #999;
-    font-size: 0.75rem;
-    margin-top: 5px;
-    display: block;
-}
-
-/* تنسيق الزرار */
-.main-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #007aff, #0051af);
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.main-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
-}
-
-.main-btn:active {
-    transform: translateY(0);
+/* ÊÍÓíä ááãæÈÇíá */
+@media (max-width: 600px) {
+    .booking-container {
+        width: 90%;
+        padding: 30px 25px;
+        margin: 20px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .custom-select {
+        padding: 12px 16px;
+    }
+    
+    .custom-select.multi {
+        height: 150px;
+    }
 }
