@@ -1,0 +1,91 @@
+/* تنسيقات عامة تشبه روح الـ Mac */
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.booking-container {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px); /* تأثير الزجاج */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    direction: rtl; /* عشان الحجز بالعربي */
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.selection-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* تنسيق الـ Select بشكل عصري */
+.custom-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: white;
+    font-size: 1rem;
+    color: #444;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.custom-select:focus {
+    border-color: #007aff; /* لون أزرق آبل */
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.custom-select.multi {
+    height: 120px;
+    padding: 10px;
+}
+
+small {
+    color: #999;
+    font-size: 0.75rem;
+    margin-top: 5px;
+    display: block;
+}
+
+/* تنسيق الزرار */
+.main-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #007aff, #0051af);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.main-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+}
+
+.main-btn:active {
+    transform: translateY(0);
+}
