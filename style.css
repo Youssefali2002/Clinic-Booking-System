@@ -332,6 +332,159 @@ small {
     transform: scale(0.98);
 }
 
+/* ÊäÓíÞ ÍÞá ÇáÊÇÑíÎ */
+.custom-date {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    font-size: 1rem;
+    color: #2d3748;
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.custom-date:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.5);
+}
+
+.custom-date:focus {
+    border-color: #667eea;
+    box-shadow: 
+        0 0 0 4px rgba(102, 126, 234, 0.15),
+        0 8px 25px rgba(102, 126, 234, 0.25);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* ÊäÓíÞ ÇáÃÒÑÇÑ */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    animation: fadeInUp 0.8s ease-out backwards;
+    animation-delay: 0.3s;
+}
+
+.btn-primary, .btn-secondary {
+    flex: 1;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.8);
+    color: #667eea;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* ÊÃËíÑ ÇáãæÌÉ ááÃÒÑÇÑ */
+.btn-primary::before, .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:active::before, .btn-secondary:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* ÊäÓíÞ ÇáÑÓÇÆá */
+.message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    z-index: 1000;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    min-width: 300px;
+    text-align: center;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.message-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.message-error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.message-info {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
 /* ÊÍÓíä ááãæÈÇíá */
 @media (max-width: 600px) {
     .booking-container {
@@ -344,11 +497,21 @@ small {
         font-size: 1.5rem;
     }
     
-    .custom-select {
+    .custom-select, .custom-date {
         padding: 12px 16px;
     }
     
     .custom-select.multi {
         height: 150px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .message {
+        min-width: 250px;
+        font-size: 0.9rem;
     }
 }
